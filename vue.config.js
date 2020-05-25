@@ -31,11 +31,23 @@ module.exports = {
   productionSourceMap: false,
   devServer: {
     port: port,
-    open: true,
+    open: false,
     overlay: {
       warnings: false,
       errors: true
     },
+    proxy: {
+      '/dev-api': {
+        // 需要代理的接口，一般会加前缀来区分，但我个人是没加，即‘/’都转发代理
+        target: 'http://back.yii2.me', // 接口域名
+        // target: 'https://127.0.0.1:8080',
+        changeOrigin: true, // 是否跨域
+        ws: false,
+        pathRewrite: {
+          '^/dev-api': '' // rewrite
+        }
+      }
+    }
     // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
