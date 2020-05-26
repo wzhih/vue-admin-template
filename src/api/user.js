@@ -17,8 +17,7 @@ export function info(token) {
 export function index(token) {
   return request({
     url: '/user/index',
-    method: 'post',
-    params: { token }
+    method: 'post'
   })
 }
 
@@ -29,3 +28,16 @@ export function add(data) {
   })
 }
 
+export function update(data) {
+  return request({
+    url: '/user/update',
+    data
+  })
+}
+
+export function del(data) {
+  return request({
+    url: '/user/delete',
+    data
+  })
+}

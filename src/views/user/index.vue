@@ -40,7 +40,7 @@
           <el-button type="primary" size="small" @click="edit(scope.$index, scope.row)">
             编辑
           </el-button>
-          <el-button type="danger" size="small" @click="edit(scope.$index, scope.row)">
+          <el-button type="danger" size="small" @click="del(scope.$index, scope.row)">
             删除
           </el-button>
         </template>
@@ -52,7 +52,7 @@
 
 <script>
 import moment from 'moment'
-import { index } from '@/api/user'
+import { index, del } from '@/api/user'
 
 export default {
   filters: {
@@ -86,7 +86,25 @@ export default {
       console.log(index, row)
     },
     del(index, row) {
-      console.log(index, row)
+      // console.log(index, row)
+      this.$confirm('确认删除该用户?', '删除', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        del({ id: row.id }).then(res => {
+          this.list.splice(index, 1)
+          this.$message({
+            type: 'success',
+            message: res.message || '删除成功!'
+          })
+        })
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消删除'
+        })
+      })
     }
   }
 }
