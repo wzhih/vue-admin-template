@@ -63,19 +63,19 @@ export const constantRoutes = [
         children: [
             {
                 path: 'index',
-                name: 'user_index',
+                name: 'UserIndex',
                 component: () => import('@/views/user/index'),
                 meta: { title: '用户列表' }
             },
             {
                 path: 'add',
-                name: 'user_add',
+                name: 'UserAdd',
                 component: () => import('@/views/user/add'),
                 hidden: true
             },
             {
                 path: 'edit/:id',
-                name: 'user_edit',
+                name: 'UserEdit',
                 component: () => import('@/views/user/edit'),
                 hidden: true
             }

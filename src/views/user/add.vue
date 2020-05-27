@@ -74,7 +74,7 @@ export default {
                     }
                     add(data).then(res => {
                         if (res.code === 0) {
-                            this.$router.push({ name: 'user_index' })
+                            this.$router.push({ name: 'UserIndex' })
                         }
                     })
                 } else {
@@ -83,7 +83,7 @@ export default {
             })
         },
         onCancel() {
-            this.$router.push({ name: 'user_index' })
+            this.$router.push({ name: 'UserIndex' })
         }
     }
 }
