@@ -110,6 +110,33 @@ export const constantRoutes = [
     },
 
     {
+        path: '/permission',
+        component: Layout,
+        meta: { title: '权限管理', icon: 'link' },
+        redirect: '/permission/index',
+        children: [
+            {
+                path: 'index',
+                name: 'PermissionIndex',
+                component: () => import('@/views/permission/index'),
+                meta: { title: '权限列表' }
+            },
+            {
+                path: 'add',
+                name: 'PermissionAdd',
+                component: () => import('@/views/permission/add'),
+                hidden: true
+            },
+            {
+                path: 'edit/:id',
+                name: 'PermissionEdit',
+                component: () => import('@/views/permission/edit'),
+                hidden: true
+            }
+        ]
+    },
+
+    {
         path: '/example',
         component: Layout,
         redirect: '/example/table',

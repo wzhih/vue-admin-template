@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-form ref="userForm" :model="form" :rules="rules" label-width="100px">
+    <el-form ref="roleForm" :model="form" :rules="rules" label-width="100px">
       <el-form-item label="角色名" prop="name">
         <el-input v-model="form.name" maxlength="20" />
       </el-form-item>
@@ -38,9 +38,6 @@ export default {
             rules: {
                 name: [
                     { type: 'string', required: true, trigger: 'blur', message: '请输入角色名' }
-                ],
-                permissions: [
-                    { type: 'array', trigger: 'blur' }
                 ]
             }
         }
@@ -57,7 +54,7 @@ export default {
     },
     methods: {
         onSubmit() {
-            this.$refs.userForm.validate((vali) => {
+            this.$refs.roleForm.validate((vali) => {
                 if (vali) {
                     const data = {
                         name: this.form.name,
