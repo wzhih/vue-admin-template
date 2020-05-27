@@ -37,25 +37,25 @@ import Breadcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 
 export default {
-  components: {
-    Breadcrumb,
-    Hamburger
-  },
-  computed: {
-    ...mapGetters([
-      'sidebar',
-      'avatar'
-    ])
-  },
-  methods: {
-    toggleSideBar() {
-      this.$store.dispatch('app/toggleSideBar')
+    components: {
+        Breadcrumb,
+        Hamburger
     },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    computed: {
+        ...mapGetters([
+            'sidebar',
+            'avatar'
+        ])
+    },
+    methods: {
+        toggleSideBar() {
+            this.$store.dispatch('app/toggleSideBar')
+        },
+        async logout() {
+            await this.$store.dispatch('user/logout')
+            this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+        }
     }
-  }
 }
 </script>
 

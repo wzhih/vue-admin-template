@@ -54,65 +54,65 @@
 
 <script>
 export default {
-  name: 'Login',
-  data() {
-    return {
-      loginForm: {
-        username: 'admin',
-        password: 'admin'
-      },
-      loginRules: {
-        username: [{ type: 'string', required: true, trigger: 'blur', message: '请输入正确用户名' }],
-        password: [{ type: 'string', required: true, trigger: 'blur', min: 5, message: '请输入不少于5位的正确密码' }]
-      },
-      loading: false,
-      passwordType: 'password',
-      redirect: undefined
-    }
-  },
-  watch: {
-    $route: {
-      handler: function(route) {
-        this.redirect = route.query && route.query.redirect
-      },
-      immediate: true
-    }
-  },
-  methods: {
-    showPwd() {
-      if (this.passwordType === 'password') {
-        this.passwordType = ''
-      } else {
-        this.passwordType = 'password'
-      }
-      this.$nextTick(() => {
-        this.$refs.password.focus()
-      })
-    },
-    handleLogin() {
-      this.$refs.loginForm.validate(async(valid) => {
-        if (valid) {
-          this.loading = true
-          // this.$store.dispatch('user/login', this.loginForm).then(() => {
-          //   this.$router.push({ path: this.redirect || '/' })
-          //   this.loading = false
-          // }).catch(() => {
-          //   this.loading = false
-          // })
-          try {
-            await this.$store.dispatch('user/login', this.loginForm)
-            this.$router.push({ path: this.redirect || '/' })
-            this.loading = false
-          } catch (error) {
-            this.loading = false
-          }
-        } else {
-          console.log('error submit!!')
-          return false
+    name: 'Login',
+    data() {
+        return {
+            loginForm: {
+                username: 'admin',
+                password: 'admin'
+            },
+            loginRules: {
+                username: [{ type: 'string', required: true, trigger: 'blur', message: '请输入正确用户名' }],
+                password: [{ type: 'string', required: true, trigger: 'blur', min: 5, message: '请输入不少于5位的正确密码' }]
+            },
+            loading: false,
+            passwordType: 'password',
+            redirect: undefined
         }
-      })
+    },
+    watch: {
+        $route: {
+            handler: function(route) {
+                this.redirect = route.query && route.query.redirect
+            },
+            immediate: true
+        }
+    },
+    methods: {
+        showPwd() {
+            if (this.passwordType === 'password') {
+                this.passwordType = ''
+            } else {
+                this.passwordType = 'password'
+            }
+            this.$nextTick(() => {
+                this.$refs.password.focus()
+            })
+        },
+        handleLogin() {
+            this.$refs.loginForm.validate(async(valid) => {
+                if (valid) {
+                    this.loading = true
+                    // this.$store.dispatch('user/login', this.loginForm).then(() => {
+                    //   this.$router.push({ path: this.redirect || '/' })
+                    //   this.loading = false
+                    // }).catch(() => {
+                    //   this.loading = false
+                    // })
+                    try {
+                        await this.$store.dispatch('user/login', this.loginForm)
+                        this.$router.push({ path: this.redirect || '/' })
+                        this.loading = false
+                    } catch (error) {
+                        this.loading = false
+                    }
+                } else {
+                    console.log('error submit!!')
+                    return false
+                }
+            })
+        }
     }
-  }
 }
 </script>
 
