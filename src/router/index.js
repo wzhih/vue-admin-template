@@ -83,6 +83,33 @@ export const constantRoutes = [
     },
 
     {
+        path: '/role',
+        component: Layout,
+        meta: { title: '角色管理', icon: 'nested' },
+        redirect: '/role/index',
+        children: [
+            {
+                path: 'index',
+                name: 'RoleIndex',
+                component: () => import('@/views/role/index'),
+                meta: { title: '角色列表' }
+            },
+            {
+                path: 'add',
+                name: 'RoleAdd',
+                component: () => import('@/views/role/add'),
+                hidden: true
+            },
+            {
+                path: 'edit/:id',
+                name: 'RoleEdit',
+                component: () => import('@/views/role/edit'),
+                hidden: true
+            }
+        ]
+    },
+
+    {
         path: '/example',
         component: Layout,
         redirect: '/example/table',

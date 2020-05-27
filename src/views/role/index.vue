@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
     <div class="title-container">
-      <router-link :to="{name:'UserAdd'}">
-        <el-button class="filter-item" type="success">新增用户</el-button>
+      <router-link :to="{name:'RoleAdd'}">
+        <el-button class="filter-item" type="success">新增角色</el-button>
       </router-link>
     </div>
     <el-table
@@ -13,16 +13,19 @@
       fit
       highlight-current-row
     >
+      <el-table-column type="expand">
+        <template slot-scope="props">
+          <el-divider content-position="left">绑定权限</el-divider>
+          <el-tag v-for="(item, index) in props.row.permissions" :key="index" class="permission-tag">
+            {{ item.name }}
+          </el-tag>
+        </template>
+      </el-table-column>
       <el-table-column align="center" label="ID" width="100">
         <template slot-scope="scope">{{ scope.row.id }}</template>
       </el-table-column>
-      <el-table-column align="center" label="用户名" width="200">
-        <template slot-scope="scope">{{ scope.row.username }}</template>
-      </el-table-column>
-      <el-table-column label="角色">
-        <template slot-scope="scope">
-          <el-tag v-for="(item, index) in scope.row.roles" :key="index" type="info">{{ item.name }}</el-tag>
-        </template>
+      <el-table-column align="center" label="角色名" width="200">
+        <template slot-scope="scope">{{ scope.row.name }}</template>
       </el-table-column>
       <el-table-column align="center" prop="created_at" label="创建时间" width="200">
         <template slot-scope="scope">
@@ -51,7 +54,7 @@
 
 <script>
 import moment from 'moment'
-import { index, del } from '@/api/user'
+import { index, del } from '@/api/role'
 import Pagination from '@/components/Pagination'
 
 export default {
@@ -68,7 +71,7 @@ export default {
             listLoading: true,
             listQuery: {
                 page: 1,
-                limit: 10
+                limit: 20
             }
         }
     },
@@ -78,8 +81,8 @@ export default {
     methods: {
         fetchData() {
             this.listLoading = true
-            index({ page: this.listQuery.page, pageSize: this.listQuery.limit }).then(response => {
-                this.list = response.data.users
+            index().then(response => {
+                this.list = response.data.roles
                 this.total = response.data.count
                 this.listQuery.page = response.data.page
                 this.listQuery.pageSize = response.data.pageSize
@@ -87,11 +90,11 @@ export default {
             })
         },
         edit(index, row) {
-            this.$router.push({ name: 'UserEdit', params: { id: row.id }})
+            this.$router.push({ name: 'RoleEdit', params: { id: row.id }})
         },
         del(index, row) {
             // console.log(index, row)
-            this.$confirm('确认删除该用户?', '删除', {
+            this.$confirm('确认删除该角色?', '删除', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
                 type: 'warning'
@@ -119,5 +122,9 @@ export default {
 <style scope>
     .title-container {
         padding-bottom: 10px;
+    }
+    .permission-tag {
+      margin-top: 10px;
+      margin-right: 10px;
     }
 </style>
