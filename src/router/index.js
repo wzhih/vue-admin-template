@@ -74,9 +74,9 @@ export const constantRoutes = [
                 hidden: true
             },
             {
-                path: 'update/:id',
-                name: 'user_update',
-                component: () => import('@/views/user/index'),
+                path: 'edit/:id',
+                name: 'user_edit',
+                component: () => import('@/views/user/edit'),
                 hidden: true
             }
         ]

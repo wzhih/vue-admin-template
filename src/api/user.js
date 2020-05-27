@@ -8,16 +8,17 @@ export function login(data) {
     })
 }
 
-export function info(token) {
+export function info() {
     return request({
         url: '/login/info'
     })
 }
 
-export function index(token) {
+export function index(data) {
     return request({
         url: '/user/index',
-        method: 'post'
+        method: 'post',
+        data
     })
 }
 
@@ -38,6 +39,13 @@ export function update(data) {
 export function del(data) {
     return request({
         url: '/user/delete',
+        data
+    })
+}
+
+export function show(data) {
+    return request({
+        url: '/user/show',
         data
     })
 }

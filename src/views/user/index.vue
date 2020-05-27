@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
-    <div class="filter-container">
-      <router-link to="/user/add">
+    <div class="title-container">
+      <router-link :to="{name:'user_add'}">
         <el-button class="filter-item" type="success">新增用户</el-button>
       </router-link>
     </div>
@@ -80,7 +80,7 @@ export default {
             })
         },
         edit(index, row) {
-            console.log(index, row)
+            this.$router.push({ name: 'user_edit', params: { id: row.id }})
         },
         del(index, row) {
             // console.log(index, row)
@@ -108,3 +108,9 @@ export default {
     }
 }
 </script>
+
+<style scope>
+    .title-container {
+        padding-bottom: 10px;
+    }
+</style>
