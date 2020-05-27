@@ -8,7 +8,7 @@
         <el-input v-model="form.password" show-password />
       </el-form-item>
       <el-form-item label="角色" prop="roles">
-        <el-select v-model="form.roles" multiple placeholder="请选择">
+        <el-select v-model="form.roles" multiple filterable placeholder="请选择">
           <el-option
             v-for="item in options"
             :key="item.value"
