@@ -137,6 +137,18 @@ export const constantRoutes = [
     },
 
     {
+        path: '/rate',
+        component: Layout,
+        redirect: '/rate/day',
+        children: [{
+            path: 'day',
+            name: 'DayRate',
+            component: () => import('@/views/rate/day/index'),
+            meta: { title: '次日留存', icon: 'dashboard' }
+        }]
+    },
+
+    {
         path: '/example',
         component: Layout,
         redirect: '/example/table',
