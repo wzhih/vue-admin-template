@@ -34,7 +34,13 @@ router.beforeEach(async(to, from, next) => {
                     // get user info
                     await store.dispatch('user/getInfo')
 
-                    next()
+                    const accessRoutes = await store.dispatch(
+                        'permission/generateRoutes',
+                        { roles: store.getters.roles, permissions: store.getters.permissions }
+                    )
+                    router.addRoutes(accessRoutes)
+
+                    next({ ...to, replace: true }) // hack方法 确保addRoutes已完成 ,set the replace: true so the navigation will not leave a history record
                 } catch (error) {
                     // remove token and go to login page to re-login
                     await store.dispatch('user/resetToken')

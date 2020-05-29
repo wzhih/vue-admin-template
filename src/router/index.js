@@ -53,7 +53,12 @@ export const constantRoutes = [
             component: () => import('@/views/dashboard/TheIndex'),
             meta: { title: 'Dashboard', icon: 'dashboard' }
         }]
-    },
+    }
+
+]
+
+// 异步路由列表
+export const asyncRoutes = [
 
     {
         path: '/system',
@@ -62,7 +67,7 @@ export const constantRoutes = [
         children: [
             {
                 path: '/user',
-                meta: { title: '用户管理', icon: 'user' },
+                meta: { title: '用户管理', icon: 'user', authID: 'user/index' },
                 component: () => import('@/views/Blank'), // Parent router-view
                 redirect: '/user/index',
                 children: [
@@ -70,18 +75,20 @@ export const constantRoutes = [
                         path: 'index',
                         name: 'UserIndex',
                         component: () => import('@/views/user/TheIndex'),
-                        meta: { title: '用户列表' }
+                        meta: { title: '用户列表', authID: 'user/index' }
                     },
                     {
                         path: 'add',
                         name: 'UserAdd',
                         component: () => import('@/views/user/TheAdd'),
+                        meta: { authID: 'user/add' },
                         hidden: true
                     },
                     {
                         path: 'edit/:id',
                         name: 'UserEdit',
                         component: () => import('@/views/user/TheEdit'),
+                        meta: { authID: 'user/update' },
                         hidden: true
                     }
                 ]
@@ -97,18 +104,20 @@ export const constantRoutes = [
                         path: 'index',
                         name: 'RoleIndex',
                         component: () => import('@/views/role/TheIndex'),
-                        meta: { title: '角色列表' }
+                        meta: { title: '角色列表', authID: 'role/index' }
                     },
                     {
                         path: 'add',
                         name: 'RoleAdd',
                         component: () => import('@/views/role/TheAdd'),
+                        meta: { authID: 'role/add' },
                         hidden: true
                     },
                     {
                         path: 'edit/:id',
                         name: 'RoleEdit',
                         component: () => import('@/views/role/TheEdit'),
+                        meta: { authID: 'role/update' },
                         hidden: true
                     }
                 ]
@@ -124,18 +133,20 @@ export const constantRoutes = [
                         path: 'index',
                         name: 'PermissionIndex',
                         component: () => import('@/views/permission/TheIndex'),
-                        meta: { title: '权限列表' }
+                        meta: { title: '权限列表', authID: 'permission/index' }
                     },
                     {
                         path: 'add',
                         name: 'PermissionAdd',
                         component: () => import('@/views/permission/TheAdd'),
+                        meta: { authID: 'permission/add' },
                         hidden: true
                     },
                     {
                         path: 'edit/:id',
                         name: 'PermissionEdit',
                         component: () => import('@/views/permission/TheEdit'),
+                        meta: { authID: 'permission/update' },
                         hidden: true
                     }
                 ]
@@ -152,7 +163,7 @@ export const constantRoutes = [
             path: 'day',
             name: 'DayRate',
             component: () => import('@/views/rate/day/TheIndex'),
-            meta: { title: '次日留存', icon: 'dashboard' }
+            meta: { title: '次日留存', icon: 'dashboard', authID: 'rate/day-rate' }
         }]
     },
 
