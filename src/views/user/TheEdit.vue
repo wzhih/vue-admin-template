@@ -72,8 +72,8 @@ export default {
                 if (vali) {
                     const data = {
                         id: this.form.id,
-                        username: this.form.username,
-                        password: this.form.password,
+                        username: this.form.username.trim(),
+                        password: this.form.password.trim(),
                         roles: this.form.roles
                     }
                     update(data).then(res => {

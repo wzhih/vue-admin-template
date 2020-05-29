@@ -57,8 +57,8 @@ export default {
             this.$refs.roleForm.validate((vali) => {
                 if (vali) {
                     const data = {
-                        name: this.form.name,
-                        password: this.form.password,
+                        name: this.form.name.trim(),
+                        password: this.form.password.trim(),
                         permissions: this.form.permissions
                     }
                     add(data).then(res => {

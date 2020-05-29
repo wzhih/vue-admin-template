@@ -48,8 +48,8 @@ export default {
                 if (vali) {
                     const data = {
                         id: this.form.id,
-                        name: this.form.name,
-                        permission: this.form.permission
+                        name: this.form.name.trim(),
+                        permission: this.form.permission.trim()
                     }
                     update(data).then(res => {
                         if (res.code === 0) {

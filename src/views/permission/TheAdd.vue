@@ -40,8 +40,8 @@ export default {
             this.$refs.permissionForm.validate((vali) => {
                 if (vali) {
                     const data = {
-                        name: this.form.name,
-                        permission: this.form.permission
+                        name: this.form.name.trim(),
+                        permission: this.form.permission.trim()
                     }
                     add(data).then(res => {
                         if (res.code === 0) {

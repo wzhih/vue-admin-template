@@ -68,8 +68,8 @@ export default {
             this.$refs.userForm.validate((vali) => {
                 if (vali) {
                     const data = {
-                        username: this.form.username,
-                        password: this.form.password,
+                        username: this.form.username.trim(),
+                        password: this.form.password.trim(),
                         roles: this.form.roles
                     }
                     add(data).then(res => {

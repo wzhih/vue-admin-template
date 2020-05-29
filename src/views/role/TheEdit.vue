@@ -64,7 +64,7 @@ export default {
                 if (vali) {
                     const data = {
                         id: this.form.id,
-                        name: this.form.name,
+                        name: this.form.name.trim(),
                         permissions: this.form.permissions
                     }
                     update(data).then(res => {
