@@ -2,7 +2,7 @@
   <div class="app-container">
     <div class="title-container">
       <router-link :to="{name:'PermissionAdd'}">
-        <el-button class="filter-item" type="success">新增权限</el-button>
+        <el-button v-permission="`permission/add`" class="filter-item" type="success">新增权限</el-button>
       </router-link>
     </div>
     <el-table
@@ -38,8 +38,8 @@
 
       <el-table-column align="center" label="操作" width="300">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="edit(scope.$index, scope.row)">编辑</el-button>
-          <el-button type="danger" size="small" @click="del(scope.$index, scope.row)">删除</el-button>
+          <el-button v-permission="`permission/update`" type="primary" size="small" @click="edit(scope.$index, scope.row)">编辑</el-button>
+          <el-button v-permission="`permission/delete`" type="danger" size="small" @click="del(scope.$index, scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -51,9 +51,11 @@
 <script>
 import moment from 'moment'
 import { index, del } from '@/api/permission'
+import permission from '@/directives/permission'
 import Pagination from '@/components/Pagination'
 
 export default {
+    directives: { permission },
     components: { Pagination },
     filters: {
         formatDate(timestamp) {

@@ -97,7 +97,7 @@ export const asyncRoutes = [
             {
                 path: '/role',
                 component: () => import('@/views/Blank'), // Parent router-view
-                meta: { title: '角色管理', icon: 'nested' },
+                meta: { title: '角色管理', icon: 'nested', authID: 'role/index' },
                 redirect: '/role/index',
                 children: [
                     {
@@ -126,7 +126,7 @@ export const asyncRoutes = [
             {
                 path: '/permission',
                 component: () => import('@/views/Blank'), // Parent router-view
-                meta: { title: '权限管理', icon: 'link' },
+                meta: { title: '权限管理', icon: 'link', authID: 'permission/index' },
                 redirect: '/permission/index',
                 children: [
                     {
