@@ -33,7 +33,7 @@ import Layout from '@/layout'
 export const constantRoutes = [
     {
         path: '/login',
-        component: () => import('@/views/login/index'),
+        component: () => import('@/views/login/TheIndex'),
         hidden: true
     },
 
@@ -50,7 +50,7 @@ export const constantRoutes = [
         children: [{
             path: 'dashboard',
             name: 'Dashboard',
-            component: () => import('@/views/dashboard/index'),
+            component: () => import('@/views/dashboard/TheIndex'),
             meta: { title: 'Dashboard', icon: 'dashboard' }
         }]
     },
@@ -63,25 +63,25 @@ export const constantRoutes = [
             {
                 path: '/user',
                 meta: { title: '用户管理', icon: 'user' },
-                component: () => import('@/views/blank'), // Parent router-view
+                component: () => import('@/views/Blank'), // Parent router-view
                 redirect: '/user/index',
                 children: [
                     {
                         path: 'index',
                         name: 'UserIndex',
-                        component: () => import('@/views/user/index'),
+                        component: () => import('@/views/user/TheIndex'),
                         meta: { title: '用户列表' }
                     },
                     {
                         path: 'add',
                         name: 'UserAdd',
-                        component: () => import('@/views/user/add'),
+                        component: () => import('@/views/user/TheAdd'),
                         hidden: true
                     },
                     {
                         path: 'edit/:id',
                         name: 'UserEdit',
-                        component: () => import('@/views/user/edit'),
+                        component: () => import('@/views/user/TheEdit'),
                         hidden: true
                     }
                 ]
@@ -89,26 +89,26 @@ export const constantRoutes = [
 
             {
                 path: '/role',
-                component: () => import('@/views/blank'), // Parent router-view
+                component: () => import('@/views/Blank'), // Parent router-view
                 meta: { title: '角色管理', icon: 'nested' },
                 redirect: '/role/index',
                 children: [
                     {
                         path: 'index',
                         name: 'RoleIndex',
-                        component: () => import('@/views/role/index'),
+                        component: () => import('@/views/role/TheIndex'),
                         meta: { title: '角色列表' }
                     },
                     {
                         path: 'add',
                         name: 'RoleAdd',
-                        component: () => import('@/views/role/add'),
+                        component: () => import('@/views/role/TheAdd'),
                         hidden: true
                     },
                     {
                         path: 'edit/:id',
                         name: 'RoleEdit',
-                        component: () => import('@/views/role/edit'),
+                        component: () => import('@/views/role/TheEdit'),
                         hidden: true
                     }
                 ]
@@ -116,26 +116,26 @@ export const constantRoutes = [
 
             {
                 path: '/permission',
-                component: () => import('@/views/blank'), // Parent router-view
+                component: () => import('@/views/Blank'), // Parent router-view
                 meta: { title: '权限管理', icon: 'link' },
                 redirect: '/permission/index',
                 children: [
                     {
                         path: 'index',
                         name: 'PermissionIndex',
-                        component: () => import('@/views/permission/index'),
+                        component: () => import('@/views/permission/TheIndex'),
                         meta: { title: '权限列表' }
                     },
                     {
                         path: 'add',
                         name: 'PermissionAdd',
-                        component: () => import('@/views/permission/add'),
+                        component: () => import('@/views/permission/TheAdd'),
                         hidden: true
                     },
                     {
                         path: 'edit/:id',
                         name: 'PermissionEdit',
-                        component: () => import('@/views/permission/edit'),
+                        component: () => import('@/views/permission/TheEdit'),
                         hidden: true
                     }
                 ]
@@ -151,7 +151,7 @@ export const constantRoutes = [
         children: [{
             path: 'day',
             name: 'DayRate',
-            component: () => import('@/views/rate/day/index'),
+            component: () => import('@/views/rate/day/TheIndex'),
             meta: { title: '次日留存', icon: 'dashboard' }
         }]
     },
