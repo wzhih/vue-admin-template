@@ -45,7 +45,16 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="fetchData" />
+    <el-pagination
+      :total="total"
+      :current-page.sync="listQuery.page"
+      :page-size.sync="listQuery.limit"
+      :page-sizes="pageSizes"
+      layout="total, sizes, prev, pager, next, jumper"
+      background
+      @size-change="handleSizeChange"
+      @current-change="fetchData"
+    />
   </div>
 </template>
 
@@ -53,11 +62,9 @@
 import moment from 'moment'
 import { index, del } from '@/api/user'
 import permission from '@/directives/permission'
-import Pagination from '@/components/Pagination'
 
 export default {
     directives: { permission },
-    components: { Pagination },
     filters: {
         formatDate(timestamp) {
             return moment.unix(timestamp).format('Y-M-D H:m:s')
@@ -71,13 +78,18 @@ export default {
             listQuery: {
                 page: 1,
                 limit: 10
-            }
+            },
+            pageSizes: [10, 20, 30, 50]
         }
     },
     created() {
         this.fetchData()
     },
     methods: {
+        handleSizeChange(val) {
+            this.listQuery.limit = val
+            this.fetchData()
+        },
         fetchData() {
             this.listLoading = true
             index({ page: this.listQuery.page, pageSize: this.listQuery.limit }).then(response => {
