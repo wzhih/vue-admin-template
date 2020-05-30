@@ -17,6 +17,7 @@
 
 <script>
 import { day } from '@/api/rate'
+import math from 'lodash/math'
 
 export default {
     data() {
@@ -45,7 +46,13 @@ export default {
             this.loading = true
             day({ start: this.start, end: this.end }).then(res => {
                 this.chartData.rows = res.data.rates.map(rate => {
-                    return { '日期': rate.day, '留存率': rate.rate }
+                    let result
+                    if (rate.register_num === 0 || rate.register_num === '0') {
+                        result = 0
+                    } else {
+                        result = math.divide(rate.login_num * 100, rate.register_num)
+                    }
+                    return { '日期': rate.day, '留存率': result }
                 })
                 this.loading = false
             })
