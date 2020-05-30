@@ -10,7 +10,7 @@
 import { isExternal } from '@/utils/validate'
 
 export default {
-    name: 'SvgIcon',
+    name: 'XSvgIcon',
     props: {
         iconClass: {
             type: String,
