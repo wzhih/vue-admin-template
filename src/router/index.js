@@ -63,7 +63,7 @@ export const asyncRoutes = [
     {
         path: '/system',
         component: Layout,
-        meta: { title: '系统管理', icon: 'nested' },
+        meta: { title: '系统管理', icon: 'nested', authID: ['user/index', 'role/index', 'permission/index'] },
         children: [
             {
                 path: '/user',
